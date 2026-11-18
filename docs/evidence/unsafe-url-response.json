@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "error": {
+    "code": "invalid_request",
+    "message": "Provide exactly one valid public HTTP(S) website URL in the url field",
+    "request_id": "946e238aeaff4957a253682ff3df31ee"
+  }
+}

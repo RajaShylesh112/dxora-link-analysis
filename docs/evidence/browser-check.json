@@ -1,0 +1,8 @@
+{
+  "mode": "illustrative fixture and intercepted UI request; no live LLM",
+  "browser": "156.0.8078.79",
+  "pageErrors": [],
+  "mobileOverflow": false,
+  "allFiveTabsNavigable": true,
+  "modelTextRenderedSafely": true
+}

@@ -1,0 +1,1093 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "LinkLens \u00b7 Website Link Analysis",
+    "description": "Analyze a public website using actual HTML and OpenRouter free models. All five output sections are validated. Competitors are labeled AI suggestions.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "Operations"
+        ],
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/link-analysis": {
+      "post": {
+        "tags": [
+          "Analysis"
+        ],
+        "summary": "Link Analysis",
+        "description": "Fetch up to three public pages, generate and validate the five analysis sections.\n\nNo placeholder analysis is served if the LLM is unavailable. API keys are server-side only.",
+        "operationId": "link_analysis_link_analysis_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinkResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request Entity Too Large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Analysis": {
+        "properties": {
+          "competitor_analysis": {
+            "$ref": "#/components/schemas/CompetitorAnalysis"
+          },
+          "target_search_queries": {
+            "items": {
+              "$ref": "#/components/schemas/SearchQuery"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 5,
+            "title": "Target Search Queries"
+          },
+          "seo_improvements": {
+            "$ref": "#/components/schemas/SEOImprovements"
+          },
+          "top_services": {
+            "items": {
+              "$ref": "#/components/schemas/Service"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Top Services"
+          },
+          "target_audience": {
+            "$ref": "#/components/schemas/Audience"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "competitor_analysis",
+          "target_search_queries",
+          "seo_improvements",
+          "top_services",
+          "target_audience"
+        ],
+        "title": "Analysis"
+      },
+      "Audience": {
+        "properties": {
+          "primary_audience": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Primary Audience"
+          },
+          "secondary_audience": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Secondary Audience"
+          },
+          "industries": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Industries"
+          },
+          "business_types": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Business Types"
+          },
+          "customer_profiles": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Customer Profiles"
+          },
+          "geographical_focus": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Geographical Focus"
+          },
+          "geographical_evidence": {
+            "items": {
+              "$ref": "#/components/schemas/Evidence"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Geographical Evidence"
+          },
+          "customer_needs": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Customer Needs"
+          },
+          "interests": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Interests"
+          },
+          "marketing_segments": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Marketing Segments"
+          },
+          "inference_notes": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Inference Notes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "primary_audience",
+          "secondary_audience",
+          "industries",
+          "business_types",
+          "customer_profiles",
+          "geographical_focus",
+          "geographical_evidence",
+          "customer_needs",
+          "interests",
+          "marketing_segments",
+          "inference_notes"
+        ],
+        "title": "Audience"
+      },
+      "Brand": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "category": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Category"
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Summary"
+          },
+          "products_and_services": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Products And Services"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/Evidence"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Evidence"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "category",
+          "summary",
+          "products_and_services",
+          "evidence"
+        ],
+        "title": "Brand"
+      },
+      "Competitor": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "comparison": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Comparison"
+          },
+          "potential_strengths": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Potential Strengths"
+          },
+          "potential_gaps": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Potential Gaps"
+          },
+          "basis": {
+            "type": "string",
+            "const": "ai_suggestion",
+            "title": "Basis"
+          },
+          "verification_needed": {
+            "type": "boolean",
+            "const": true,
+            "title": "Verification Needed"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "comparison",
+          "potential_strengths",
+          "potential_gaps",
+          "basis",
+          "verification_needed"
+        ],
+        "title": "Competitor"
+      },
+      "CompetitorAnalysis": {
+        "properties": {
+          "brand_overview": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Brand Overview"
+          },
+          "competitors": {
+            "items": {
+              "$ref": "#/components/schemas/Competitor"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Competitors"
+          },
+          "strengths": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Strengths"
+          },
+          "opportunities": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Opportunities"
+          },
+          "limitations": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "brand_overview",
+          "competitors",
+          "strengths",
+          "opportunities",
+          "limitations"
+        ],
+        "title": "CompetitorAnalysis"
+      },
+      "ErrorDetail": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "message",
+          "request_id"
+        ],
+        "title": "ErrorDetail"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": false,
+            "title": "Success",
+            "default": false
+          },
+          "error": {
+            "$ref": "#/components/schemas/ErrorDetail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse"
+      },
+      "Evidence": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "pattern": "^S[1-5]$",
+            "title": "Source Id"
+          },
+          "quote": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 10,
+            "title": "Quote"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_id",
+          "quote"
+        ],
+        "title": "Evidence"
+      },
+      "LinkRequest": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "maxLength": 2048,
+            "minLength": 1,
+            "title": "Url"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "title": "LinkRequest"
+      },
+      "LinkResponse": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true,
+            "title": "Success",
+            "default": true
+          },
+          "website": {
+            "type": "string",
+            "title": "Website"
+          },
+          "brand": {
+            "$ref": "#/components/schemas/Brand"
+          },
+          "analysis": {
+            "$ref": "#/components/schemas/Analysis"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            },
+            "type": "array",
+            "title": "Sources"
+          },
+          "seo_observations": {
+            "items": {
+              "$ref": "#/components/schemas/SEOObservation"
+            },
+            "type": "array",
+            "title": "Seo Observations"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "website",
+          "brand",
+          "analysis",
+          "sources",
+          "seo_observations",
+          "metadata"
+        ],
+        "title": "LinkResponse"
+      },
+      "Metadata": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "generated_at": {
+            "type": "string",
+            "title": "Generated At"
+          },
+          "elapsed_ms": {
+            "type": "integer",
+            "title": "Elapsed Ms"
+          },
+          "provider": {
+            "type": "string",
+            "const": "OpenRouter",
+            "title": "Provider"
+          },
+          "model_requested": {
+            "type": "string",
+            "title": "Model Requested"
+          },
+          "model_used": {
+            "type": "string",
+            "title": "Model Used"
+          },
+          "cached": {
+            "type": "boolean",
+            "title": "Cached"
+          },
+          "cache_age_seconds": {
+            "type": "integer",
+            "title": "Cache Age Seconds"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/Usage"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "competitor_research": {
+            "type": "string",
+            "const": "ai_suggestions_not_independently_verified",
+            "title": "Competitor Research"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "generated_at",
+          "elapsed_ms",
+          "provider",
+          "model_requested",
+          "model_used",
+          "cached",
+          "cache_age_seconds",
+          "usage",
+          "warnings",
+          "competitor_research"
+        ],
+        "title": "Metadata"
+      },
+      "SEOImprovements": {
+        "properties": {
+          "primary_keyword": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Primary Keyword"
+          },
+          "secondary_keywords": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Secondary Keywords"
+          },
+          "long_tail_keywords": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Long Tail Keywords"
+          },
+          "business_keywords": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Business Keywords"
+          },
+          "recommended_title": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Recommended Title"
+          },
+          "title_rationale": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Title Rationale"
+          },
+          "meta_description": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Meta Description"
+          },
+          "supporting_content": {
+            "items": {
+              "$ref": "#/components/schemas/SupportingContent"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Supporting Content"
+          },
+          "priority_actions": {
+            "items": {
+              "type": "string",
+              "maxLength": 1500,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 12,
+            "title": "Priority Actions"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "primary_keyword",
+          "secondary_keywords",
+          "long_tail_keywords",
+          "business_keywords",
+          "recommended_title",
+          "title_rationale",
+          "meta_description",
+          "supporting_content",
+          "priority_actions"
+        ],
+        "title": "SEOImprovements"
+      },
+      "SEOObservation": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "check": {
+            "type": "string",
+            "title": "Check"
+          },
+          "observed": {
+            "type": "string",
+            "title": "Observed"
+          },
+          "recommendation": {
+            "type": "string",
+            "title": "Recommendation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_id",
+          "check",
+          "observed",
+          "recommendation"
+        ],
+        "title": "SEOObservation"
+      },
+      "SearchQuery": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Query"
+          },
+          "platforms": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "Google",
+                "Facebook",
+                "Instagram",
+                "LinkedIn",
+                "X"
+              ]
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 1,
+            "title": "Platforms"
+          },
+          "intent": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Intent"
+          },
+          "business_relevance": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Business Relevance"
+          },
+          "target_audience": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Target Audience"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "query",
+          "platforms",
+          "intent",
+          "business_relevance",
+          "target_audience"
+        ],
+        "title": "SearchQuery"
+      },
+      "Service": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Description"
+          },
+          "target_industry": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Target Industry"
+          },
+          "target_customer": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Target Customer"
+          },
+          "main_benefit": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Main Benefit"
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "observed",
+              "inferred_recommendation"
+            ],
+            "title": "Basis"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/Evidence"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Evidence"
+          },
+          "inference_reason": {
+            "type": "string",
+            "maxLength": 1000,
+            "title": "Inference Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "target_industry",
+          "target_customer",
+          "main_benefit",
+          "basis",
+          "evidence",
+          "inference_reason"
+        ],
+        "title": "Service"
+      },
+      "Source": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "meta_description": {
+            "type": "string",
+            "title": "Meta Description"
+          },
+          "h1": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "H1"
+          },
+          "h2": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "H2"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "canonical": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Canonical"
+          },
+          "image_count": {
+            "type": "integer",
+            "title": "Image Count"
+          },
+          "images_missing_alt": {
+            "type": "integer",
+            "title": "Images Missing Alt"
+          },
+          "word_count": {
+            "type": "integer",
+            "title": "Word Count"
+          },
+          "content_hash": {
+            "type": "string",
+            "title": "Content Hash"
+          },
+          "truncated": {
+            "type": "boolean",
+            "title": "Truncated"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "url",
+          "title",
+          "meta_description",
+          "h1",
+          "h2",
+          "text",
+          "canonical",
+          "image_count",
+          "images_missing_alt",
+          "word_count",
+          "content_hash",
+          "truncated"
+        ],
+        "title": "Source"
+      },
+      "SupportingContent": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "content_type": {
+            "type": "string",
+            "enum": [
+              "service_page",
+              "industry_page",
+              "faq",
+              "blog",
+              "location_page",
+              "article"
+            ],
+            "title": "Content Type"
+          },
+          "rationale": {
+            "type": "string",
+            "maxLength": 1500,
+            "minLength": 1,
+            "title": "Rationale"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title",
+          "content_type",
+          "rationale"
+        ],
+        "title": "SupportingContent"
+      },
+      "Usage": {
+        "properties": {
+          "input_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Input Tokens"
+          },
+          "output_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Output Tokens"
+          },
+          "reported_cost_usd": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reported Cost Usd"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "input_tokens",
+          "output_tokens",
+          "reported_cost_usd"
+        ],
+        "title": "Usage"
+      }
+    },
+    "securitySchemes": {
+      "APIKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}

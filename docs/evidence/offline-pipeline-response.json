@@ -1,0 +1,358 @@
+{
+  "success": true,
+  "website": "https://northstar.example/",
+  "brand": {
+    "name": "Northstar Studio",
+    "category": "Digital product design and development",
+    "summary": "A fictional studio helping startups and small businesses with brand strategy, websites, web applications, online stores and search optimization.",
+    "products_and_services": [
+      "Brand strategy",
+      "Website design",
+      "Web development",
+      "E-commerce development",
+      "Search optimization"
+    ],
+    "evidence": [
+      {
+        "source_id": "S1",
+        "quote": "Northstar Studio helps startups and small businesses design, build and improve digital products."
+      }
+    ]
+  },
+  "analysis": {
+    "competitor_analysis": {
+      "brand_overview": "Northstar combines research, design and development for early-stage teams. Its website describes a small senior team and five complementary offerings.",
+      "competitors": [
+        {
+          "name": "thoughtbot",
+          "comparison": "A possible comparison for startup product design and development; validate fit against Northstar's project size and budgets.",
+          "potential_strengths": [
+            "Research whether its product development experience matches the buyer's needs."
+          ],
+          "potential_gaps": [
+            "Compare engagement scope and suitability for smaller website projects."
+          ],
+          "basis": "ai_suggestion",
+          "verification_needed": true
+        },
+        {
+          "name": "ustwo",
+          "comparison": "A possible reference for digital product design; competitive overlap needs independent validation.",
+          "potential_strengths": [
+            "Review its public product portfolio and design process."
+          ],
+          "potential_gaps": [
+            "Check whether the engagement model fits a small business launch."
+          ],
+          "basis": "ai_suggestion",
+          "verification_needed": true
+        },
+        {
+          "name": "Clay",
+          "comparison": "A possible comparison for brand and digital experience projects; pricing and current service coverage are unverified.",
+          "potential_strengths": [
+            "Review brand identity and digital design case studies."
+          ],
+          "potential_gaps": [
+            "Validate the availability and suitability of ongoing small-team support."
+          ],
+          "basis": "ai_suggestion",
+          "verification_needed": true
+        }
+      ],
+      "strengths": [
+        "Integrated brand, design and development offering is stated on the site.",
+        "The website explicitly focuses on startups and small businesses.",
+        "Accessible website design is an explicit service commitment."
+      ],
+      "opportunities": [
+        "Publish project examples showing the problem, decisions and results.",
+        "Create focused landing pages for customer portals and e-commerce builds.",
+        "Clarify engagement scope and the handoff process for small teams."
+      ],
+      "limitations": "Illustrative fixture. Competitors are suggestions only, with no independent competitor research, verified weaknesses, pricing or market-share claims."
+    },
+    "target_search_queries": [
+      {
+        "query": "digital product studio for startups",
+        "platforms": [
+          "Google"
+        ],
+        "intent": "Service discovery",
+        "business_relevance": "Connects the explicit startup audience with design and development.",
+        "target_audience": "Startup founders"
+      },
+      {
+        "query": "small business website design team",
+        "platforms": [
+          "Facebook"
+        ],
+        "intent": "Business discovery",
+        "business_relevance": "Matches the website design service and small-business positioning.",
+        "target_audience": "Small business owners"
+      },
+      {
+        "query": "accessible website design inspiration",
+        "platforms": [
+          "Instagram"
+        ],
+        "intent": "Visual inspiration",
+        "business_relevance": "Highlights the studio's stated accessible design focus.",
+        "target_audience": "Brand and marketing teams"
+      },
+      {
+        "query": "customer portal development for small teams",
+        "platforms": [
+          "LinkedIn"
+        ],
+        "intent": "B2B solution research",
+        "business_relevance": "Matches the explicitly offered customer portal development.",
+        "target_audience": "Operations leaders"
+      },
+      {
+        "query": "startup brand positioning and web launch",
+        "platforms": [
+          "X"
+        ],
+        "intent": "Advice and service discovery",
+        "business_relevance": "Connects positioning work with the startup launch journey.",
+        "target_audience": "Early-stage founders"
+      }
+    ],
+    "seo_improvements": {
+      "primary_keyword": "digital product studio for startups",
+      "secondary_keywords": [
+        "small business website design",
+        "customer portal development",
+        "startup brand strategy"
+      ],
+      "long_tail_keywords": [
+        "accessible website design for small businesses",
+        "e-commerce development for growing retailers",
+        "brand positioning for an early-stage startup"
+      ],
+      "business_keywords": [
+        "digital product design",
+        "responsive websites",
+        "on-page search optimization"
+      ],
+      "recommended_title": "Digital Product Studio for Startups | Northstar Studio",
+      "title_rationale": "Lead with the business category and stated customer group, then retain the brand name.",
+      "meta_description": "Northstar Studio helps startups and small businesses clarify their brand, design accessible websites, and build digital products for their next stage.",
+      "supporting_content": [
+        {
+          "title": "Customer portals for small business teams",
+          "content_type": "service_page",
+          "rationale": "Develop an explicitly offered service into a page with use cases, project scope and FAQs."
+        },
+        {
+          "title": "What to prepare before a website project",
+          "content_type": "faq",
+          "rationale": "Help the stated small-business audience understand goals, assets and launch decisions."
+        }
+      ],
+      "priority_actions": [
+        "Give each core service a dedicated, descriptive landing page.",
+        "Add relevant project case studies without inventing outcome metrics.",
+        "Review the meaning of each image before adding alt text; decorative images may remain empty."
+      ]
+    },
+    "top_services": [
+      {
+        "name": "Brand strategy",
+        "description": "We clarify positioning, brand identity and messaging for growing businesses.",
+        "target_industry": "Early-stage businesses",
+        "target_customer": "Founders refining an offering",
+        "main_benefit": "A clearer and more consistent brand story",
+        "basis": "observed",
+        "evidence": [
+          {
+            "source_id": "S1",
+            "quote": "We clarify positioning, brand identity and messaging for growing businesses."
+          }
+        ],
+        "inference_reason": ""
+      },
+      {
+        "name": "Website design",
+        "description": "We design accessible, responsive websites that make complex offerings easy to understand.",
+        "target_industry": "Professional services",
+        "target_customer": "Teams improving their digital presence",
+        "main_benefit": "A more understandable and accessible customer experience",
+        "basis": "observed",
+        "evidence": [
+          {
+            "source_id": "S1",
+            "quote": "We design accessible, responsive websites that make complex offerings easy to understand."
+          }
+        ],
+        "inference_reason": ""
+      },
+      {
+        "name": "Web development",
+        "description": "We build reliable web applications and customer portals for small business teams.",
+        "target_industry": "Business software",
+        "target_customer": "Small teams needing customer-facing software",
+        "main_benefit": "A dedicated digital workflow for customers",
+        "basis": "observed",
+        "evidence": [
+          {
+            "source_id": "S1",
+            "quote": "We build reliable web applications and customer portals for small business teams."
+          }
+        ],
+        "inference_reason": ""
+      },
+      {
+        "name": "E-commerce development",
+        "description": "We build online stores with straightforward product discovery and checkout experiences.",
+        "target_industry": "Retail",
+        "target_customer": "Retail businesses launching online stores",
+        "main_benefit": "Simpler product browsing and checkout",
+        "basis": "observed",
+        "evidence": [
+          {
+            "source_id": "S1",
+            "quote": "We build online stores with straightforward product discovery and checkout experiences."
+          }
+        ],
+        "inference_reason": ""
+      },
+      {
+        "name": "Search optimization",
+        "description": "We improve on-page content, website structure and metadata to support organic discovery.",
+        "target_industry": "Cross-industry",
+        "target_customer": "Businesses improving organic discovery",
+        "main_benefit": "Clearer content and metadata for search discovery",
+        "basis": "observed",
+        "evidence": [
+          {
+            "source_id": "S1",
+            "quote": "We improve on-page content, website structure and metadata to support organic discovery."
+          }
+        ],
+        "inference_reason": ""
+      }
+    ],
+    "target_audience": {
+      "primary_audience": [
+        "Startup founders planning a digital product",
+        "Small business owners improving their website"
+      ],
+      "secondary_audience": [
+        "Retailers preparing an online store",
+        "Marketing teams improving brand clarity"
+      ],
+      "industries": [
+        "Professional services",
+        "Retail",
+        "Business software"
+      ],
+      "business_types": [
+        "Startups",
+        "Small businesses"
+      ],
+      "customer_profiles": [
+        "A founder coordinating a first product launch",
+        "A small team replacing a confusing website"
+      ],
+      "geographical_focus": null,
+      "geographical_evidence": [],
+      "customer_needs": [
+        "A coherent brand and launch story",
+        "A reliable customer-facing digital experience",
+        "Clearer organic discovery"
+      ],
+      "interests": [
+        "Product design",
+        "Accessible websites",
+        "Business growth through digital services"
+      ],
+      "marketing_segments": [
+        "Founders researching a product launch",
+        "Small teams evaluating a website redesign",
+        "Retailers comparing e-commerce implementation partners"
+      ],
+      "inference_notes": "Startups and small businesses are explicit in the fixture. Industry segments, customer profiles and interests are illustrative deductions, not measured demographic data. No location is stated."
+    }
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "url": "https://northstar.example/",
+      "title": "Northstar Studio | Digital products for growing teams",
+      "meta_description": "Northstar Studio helps startups and small businesses design, build and improve digital products.",
+      "h1": [
+        "Digital products with a clearer direction."
+      ],
+      "h2": [
+        "Brand strategy",
+        "Website design",
+        "Web development",
+        "E-commerce development",
+        "Search optimization"
+      ],
+      "text": "Title: Northstar Studio | Digital products for growing teams\nDescription: Northstar Studio helps startups and small businesses design, build and improve digital products.\nNorthstar Studio | Digital products for growing teams\nDigital products with a clearer direction.\nNorthstar Studio helps startups and small businesses design, build and improve digital products.\nBrand strategy\nWe clarify positioning, brand identity and messaging for growing businesses.\nWebsite design\nWe design accessible, responsive websites that make complex offerings easy to understand.\nWeb development\nWe build reliable web applications and customer portals for small business teams.\nE-commerce development\nWe build online stores with straightforward product discovery and checkout experiences.\nSearch optimization\nWe improve on-page content, website structure and metadata to support organic discovery.\nOur small senior team combines research, design and development to help early-stage teams launch with confidence.\nExplore services\nOff-site about page\nDo not follow internal addresses",
+      "canonical": "https://northstar.example/",
+      "image_count": 2,
+      "images_missing_alt": 1,
+      "word_count": 120,
+      "content_hash": "0d96793db1e57cb598cc644659d4a78599b4dff67c9d8a81eec750f999b0cde6",
+      "truncated": false
+    }
+  ],
+  "seo_observations": [
+    {
+      "source_id": "S1",
+      "check": "title",
+      "observed": "53 characters",
+      "recommendation": "Use a distinct, descriptive title with the primary topic; length is a display heuristic, not a ranking rule"
+    },
+    {
+      "source_id": "S1",
+      "check": "meta_description",
+      "observed": "96 characters",
+      "recommendation": "Write a clear summary and value proposition; search engines may rewrite snippets"
+    },
+    {
+      "source_id": "S1",
+      "check": "h1",
+      "observed": "1 H1 headings",
+      "recommendation": "Use a clear page topic and a meaningful heading hierarchy"
+    },
+    {
+      "source_id": "S1",
+      "check": "image_alt",
+      "observed": "1 of 2 images have no non-empty alt",
+      "recommendation": "Review informative images for descriptive alt text; decorative images may correctly use empty alt"
+    },
+    {
+      "source_id": "S1",
+      "check": "canonical",
+      "observed": "Present (not fetched or verified)",
+      "recommendation": "Review canonical URL choices if duplicate URL versions exist"
+    }
+  ],
+  "metadata": {
+    "request_id": "e91b600e15604a30acff2a620108c60b",
+    "generated_at": "2026-11-18T09:08:35.311158+00:00",
+    "elapsed_ms": 138,
+    "provider": "OpenRouter",
+    "model_requested": "openrouter/free",
+    "model_used": "simulated/model:free",
+    "cached": false,
+    "cache_age_seconds": 0,
+    "usage": {
+      "input_tokens": 2100,
+      "output_tokens": 1600,
+      "reported_cost_usd": 0.0
+    },
+    "warnings": [
+      "OFFLINE TEST: all upstream HTTP responses simulated; not a live analysis",
+      "Server-rendered HTML only; JavaScript content and the full website may not be represented",
+      "Competitors are AI suggestions; strengths and gaps require independent research",
+      "Search queries, SEO changes and marketing segments are recommendations, not measured performance"
+    ],
+    "competitor_research": "ai_suggestions_not_independently_verified"
+  }
+}

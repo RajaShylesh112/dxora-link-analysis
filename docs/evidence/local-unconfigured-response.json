@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "error": {
+    "code": "llm_not_configured",
+    "message": "Configure OPENROUTER_API_KEY to enable live analysis",
+    "request_id": "acbe99a7b6d242d38f168adaf8258aa2"
+  }
+}
