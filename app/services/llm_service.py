@@ -30,6 +30,8 @@ rankings, traffic, market share, prices, or benchmark data anywhere in the resul
 3. seo_improvements: primary, secondary, long-tail and business keywords, useful recommended_title
 (up to 80 chars), title_rationale, meta_description (up to 200 chars), supporting_content and priority_actions.
 These are recommendations, not measured rankings. Do not propose locations unsupported by evidence.
+Do not recommend creating a page that is already represented by a source URL; suggest improving it.
+Missing or empty alt text is a review cue, not automatically an error: decorative images may use empty alt.
 4. top_services: five where supported. If fewer than five actual services/products are present, return
 only observed ones (1-5), or mark extra recommendations as inferred_recommendation with a reason.
 Do not turn example customer projects or use cases into separate services. For a single SaaS product,
@@ -274,7 +276,22 @@ class LLMService:
             )
         except AnalysisError:
             raise
-        except (ValueError, KeyError, IndexError, TypeError, AttributeError, RecursionError, ValidationError):
+        except ValidationError as exc:
+            # Log schema field names and fixed validation categories, never values.
+            schema = ModelOutput.model_json_schema()
+            definitions = [schema, *schema.get("$defs", {}).values()]
+            fields = {key for definition in definitions for key in definition.get("properties", {})}
+            checks = []
+            for error in exc.errors(include_input=False)[:5]:
+                path = ".".join(
+                    str(part) if isinstance(part, int) or part in fields else "extra" for part in error["loc"]
+                )
+                checks.append((path, error["type"]))
+            logger.warning("model_schema_checks_failed=%s", checks)
+            raise AnalysisError(
+                "invalid_model_output", "Model did not return a complete, valid, evidence-grounded analysis"
+            ) from None
+        except (ValueError, KeyError, IndexError, TypeError, AttributeError, RecursionError):
             raise AnalysisError(
                 "invalid_model_output", "Model did not return a complete, valid, evidence-grounded analysis"
             ) from None

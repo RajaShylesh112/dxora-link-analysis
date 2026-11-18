@@ -71,6 +71,7 @@ class AnalysisService:
         warnings.extend(
             [
                 "Competitors are AI suggestions; strengths and gaps require independent research",
+                "The model uses a bounded catalog of captured excerpts; recommendations should be reviewed in context",
                 "Search queries, SEO changes and marketing segments are recommendations, not measured performance",
             ]
         )

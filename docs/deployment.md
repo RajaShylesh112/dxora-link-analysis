@@ -10,7 +10,7 @@ A normal **Web Service** works; a paid Blueprint plan, database and Docker are n
 6. Select the **Free** instance type. Do not select Starter or another paid instance.
 7. Add environment variables:
    - `OPENROUTER_API_KEY`: your own secret, entered in Render only.
-   - `OPENROUTER_MODEL`: `inclusionai/ling-3.2-flash:free`.
+   - `OPENROUTER_MODEL`: `nvidia/nemotron-3.5-super-vl:free`.
    - `LLM_STRICT_SCHEMA`: `true`.
    - `LLM_DISABLE_REASONING`: `true`.
    - `LLM_TIMEOUT_SECONDS`: `100`.
@@ -46,3 +46,12 @@ Official documentation checked 18 November 2026: [Free services](https://render.
 ## Updating the current public-repository deployment
 
 When Render uses a public Git repository URL without a connected Git provider, pushes do not automatically deploy even if auto-deploy appears enabled. Use **Manual Deploy → Deploy latest commit** after a source change, and verify the deployed commit. If you connect the repository through Render's GitHub integration later, automatic deploys can be enabled normally. See [Render deployment documentation](https://render.com/docs/deploys).
+
+## Current verified demo
+
+- App: https://dxora-link-analysis.onrender.com
+- API docs: https://dxora-link-analysis.onrender.com/docs
+- API endpoint: https://dxora-link-analysis.onrender.com/link-analysis
+- Source: https://github.com/RajaShylesh112/dxora-link-analysis
+
+The default production model is `nvidia/nemotron-3.5-super-vl:free`, with optional reasoning disabled. The current demo has one alternate free model (`inclusionai/ling-3.2-flash:free`). Both are zero-priced routes; no paid fallback is configured. The OpenRouter key is stored only in Render's environment.

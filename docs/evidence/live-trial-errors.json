@@ -29,6 +29,13 @@
       "error_code": "invalid_model_output",
       "request_id": "cdd6d5574f72426f86cdd1a59738d7d9",
       "notes": "A completed structured response contained a quote that did not literally match extracted content. Validation rejected it. Generation was subsequently constrained to an enum of real excerpts."
+    },
+    {
+      "website": "https://glinto.co.kr/en",
+      "http_status": 504,
+      "error_code": "llm_timeout",
+      "request_id": "30c82be9495e4b2ab91e675388c7727a",
+      "notes": "Primary free model output failed quality validation; the configured free fallback timed out. No success was fabricated."
     }
   ]
 }

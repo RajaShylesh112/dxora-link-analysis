@@ -1,10 +1,39 @@
-# LinkLens · AI-powered website link analysis
+# LinkLens · A clearer view of any website
 
 [![Verify LinkLens](https://github.com/RajaShylesh112/dxora-link-analysis/actions/workflows/test.yml/badge.svg)](https://github.com/RajaShylesh112/dxora-link-analysis/actions)
 
 **One website, five evidence-led perspectives.** A Python/FastAPI API that fetches public website content, extracts readable text, uses **OpenRouter free models**, validates the analysis, and returns brand/competitor, search, SEO, service and audience insights. Includes a responsive reviewer interface, source excerpts, actual HTML observations and downloadable JSON.
 
 ![LinkLens interface](docs/evidence/desktop-home.png)
+
+## Try the app
+
+**[Live demo](https://dxora-link-analysis.onrender.com) · [API documentation](https://dxora-link-analysis.onrender.com/docs) · [Public source](https://github.com/RajaShylesh112/dxora-link-analysis)**
+
+1. Paste a website URL or just a domain, such as `basecamp.com`.
+2. Select **Analyze**, or use **Try Basecamp** for a live example.
+3. Explore **Overview, Search ideas, SEO, Services, and Audience**.
+4. Open **Sources & how this report was made** to inspect evidence, or download the JSON report.
+
+**Explore a recorded report** opens a saved, real OpenRouter response with its original timestamp. It does not make a new model call and is clearly labeled as recorded. A separate fictional test report lives under **Developer tools**. These modes are never substituted by the API on failure.
+
+The interface uses a Glinto-inspired visual direction: oversized DM Sans typography, a white canvas, pale lime accents, thin dividers, and a simple top navigation. The sidebar is removed; technical details are tucked into disclosures. Domain-only input is normalized to HTTPS in the browser; the API itself still requires an absolute URL. Loading/cancel controls, readable errors, mobile search cards, keyboard-accessible tabs and source excerpts make the flow easier to use.
+
+Design reference: [Glinto](https://glinto.co.kr/en). The app uses original layouts/graphics rather than Glinto's images or source code. DM Sans is self-hosted under the included [SIL Open Font License](app/static/fonts/OFL.txt); no font CDN is needed at runtime.
+
+## Live verification
+
+On **18 November 2026**, the deployed API analyzed `https://basecamp.com/` with **three real source pages**, all five required sections, three labeled competitor suggestions and five source-backed offerings. The accepted report includes concrete buyer profiles; punctuation-only placeholders are rejected by validation.
+
+| Measurement | Observed value for this one uncached run |
+|---|---:|
+| Client-measured end-to-end time | 15.78 seconds |
+| Server processing time | 15.428 seconds |
+| Actual model | `nvidia/nemotron-3.5-super-vl:free` |
+| Provider-reported input / output tokens | 5,108 / 1,872 |
+| Provider-reported API cost | $0.00 |
+
+[Full real API response](docs/evidence/live-analysis.json) · [Recorded report in the app](app/static/recorded-report.json) · [Public deployment checks](docs/evidence/deployment-check.json). This is one measured smoke test, **not** a statistically valid accuracy or latency benchmark. Earlier free-provider timeouts, rate limits and quote-validation failures are documented in [live trial errors](docs/evidence/live-trial-errors.json).
 
 ## Run locally
 
@@ -27,9 +56,9 @@ uvicorn app.main:app --host 0.0.0.0 --port 4000 --no-proxy-headers
 - **API:** `POST http://localhost:4000/link-analysis`
 - **Readiness information:** `GET /health` (`analysis_configured` reports key presence, not provider validity)
 
-Get your own key from [OpenRouter](https://openrouter.ai/settings/keys). The default model is the explicit free model `inclusionai/ling-3.2-flash:free`, with reasoning disabled for this structured extraction task. `openrouter/free` is an optional dynamic alternative. Only the free router or model IDs ending in `:free` are accepted, and provider routing caps input/output prices at zero. There is no paid fallback. A key is still required for free models, and account/availability limits apply.
+Get your own key from [OpenRouter](https://openrouter.ai/settings/keys). The default model is the explicit free model `nvidia/nemotron-3.5-super-vl:free`, with reasoning disabled for this structured extraction task. `openrouter/free` is an optional dynamic alternative. Only the free router or model IDs ending in `:free` are accepted, and provider routing caps input/output prices at zero. There is no paid fallback. A key is still required for free models, and account/availability limits apply.
 
-**Verification status:** [99 automated tests](docs/evidence/tests.log) and [Chromium UI checks](docs/evidence/browser-check.json) validate the local implementation. Fixtures intercept website and LLM traffic; these are not live-model benchmarks. The illustrative UI report is explicitly labeled and never used by the analysis endpoint. Real analysis requires a configured OpenRouter key and public outbound HTTPS access. Deployment and live model evidence must be recorded before describing a demo as live; see [deployment instructions](docs/deployment.md).
+**Verification status:** [102 automated tests](docs/evidence/tests.log), [Chromium UI checks](docs/evidence/browser-check.json), and a [real deployed analysis](docs/evidence/live-analysis.json) are included. Automated fixtures intercept upstreams; the live response is separate. The illustrative UI report is explicitly labeled and never used by the analysis endpoint. See [deployment instructions](docs/deployment.md).
 
 ## API request and response
 
@@ -127,7 +156,7 @@ Research checked **18 November 2026**, from provider documentation and the publi
 
 | Provider / model | Input / output | Context | JSON support | Speed & accuracy assessment | Suitability |
 |---|---:|---:|---|---|---|
-| OpenRouter `inclusionai/ling-3.2-flash:free` | **$0 / $0** | 1,048,576 | Catalog advertises structured outputs; schema validated locally | Hybrid reasoning can be disabled. App accuracy unmeasured. | **Selected for this zero-budget demo.** Explicit ID avoids random routing. |
+| OpenRouter `nvidia/nemotron-3.5-super-vl:free` | **$0 / $0** | 1,000,000 | Schema-constrained excerpt references; locally validated | One accepted uncached run took 15.78s end-to-end; no accuracy benchmark. | **Selected for this zero-budget demo.** Explicit ID avoids random routing. |
 | OpenRouter `openrouter/free` | $0 / $0 | Varies; catalog lists 200k | Feature-filtered routing | A real trial exceeded 60 seconds; selected model was unknown because no response arrived. | Optional free alternative; less reproducible. |
 | OpenAI `gpt-6-luna` | $0.10 / $0.50 | 1,050,000 | Structured outputs | Provider positions it for efficient high-volume work; app accuracy unmeasured. | Low-cost paid candidate for a later controlled evaluation. |
 | Google `gemini-3.5-flash-lite` | $0.30 / $2.50; eligible free tier has quotas | 1,048,576 | Structured outputs | Provider describes low-latency extraction; app accuracy unmeasured. | Direct-provider alternative with explicit model selection. |
@@ -135,9 +164,9 @@ Research checked **18 November 2026**, from provider documentation and the publi
 
 Sources: [OpenRouter free router](https://openrouter.ai/docs/guides/routing/routers/free-router), [OpenRouter structured output](https://openrouter.ai/docs/guides/features/structured-outputs), [OpenAI model/pricing](https://developers.openai.com/api/docs/models/gpt-6-luna), [Gemini pricing](https://aistudio.google.com/docs/pricing#gemini-3.5-flash-lite), [Gemini model](https://aistudio.google.com/docs/models/gemini-3.5-flash-lite), [Claude model/pricing](https://platform.claude.com/docs/en/models/haiku-5-5/overview). The saved [free-model catalog subset](docs/openrouter-free-models.json) captures actual catalog metadata as of the research date; it is not a promise of ongoing availability.
 
-**Final recommendation for this submission:** OpenRouter with `inclusionai/ling-3.2-flash:free`, strict JSON Schema, `require_parameters: true`, and `reasoning.enabled: false`. The live catalog lists a 1M context, structured output support, zero input/output pricing and optional reasoning. This explicit ID avoids random model selection. The initial `openrouter/free` trial timed out after 60 seconds, so no model identity or completed-response quality was measured for that attempt. Validate the pinned candidate on real sites before claiming accuracy; free availability still varies. Paid provider adapters are **researched alternatives, not implemented fallback integrations**.
+**Final recommendation for this submission:** OpenRouter with `nvidia/nemotron-3.5-super-vl:free`, strict JSON Schema, `require_parameters: true`, and `reasoning.enabled: false`. The live catalog lists a 1M context, structured output support, zero input/output pricing and optional reasoning. This explicit ID avoids random model selection, and it completed the recorded live smoke check. The initial `openrouter/free` trial timed out after 60 seconds, so no model identity or completed-response quality was measured for that attempt. Validate the pinned candidate on real sites before claiming accuracy; free availability still varies. Paid provider adapters are **researched alternatives, not implemented fallback integrations**.
 
-**Fallback:** optionally set `OPENROUTER_FALLBACK_MODEL` to an explicit free model supporting structured outputs, selected from the live catalog. One alternate call is allowed for rate/availability/timeout/invalid-output failures; authentication failures are not retried. No fallback is configured by default. Model IDs may retire; refresh the catalog instead of assuming historical free names remain available.
+**Fallback:** optionally set `OPENROUTER_FALLBACK_MODEL` to an explicit free model supporting structured outputs, selected from the live catalog. The current Render demo uses `inclusionai/ling-3.2-flash:free` as its one free alternate; the local example leaves fallback empty. One alternate call is allowed for rate/availability/timeout/invalid-output failures; authentication failures are not retried. No fallback is configured by default. Model IDs may retire; refresh the catalog instead of assuming historical free names remain available.
 
 **Estimated per analysis:** approximately 5,000–10,000 input tokens (including instructions/schema) and 2,500–5,000 output tokens. The 22,000-character content cap is **not** a token guarantee; non-English text/tokenizers vary. At a representative 8,000 input + 3,500 output tokens:
 

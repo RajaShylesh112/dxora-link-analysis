@@ -4,5 +4,8 @@
   "pageErrors": [],
   "mobileOverflow": false,
   "allFiveTabsNavigable": true,
+  "bareDomainNormalized": true,
+  "recordedReportLabeled": true,
+  "recordedDownloadVerified": true,
   "modelTextRenderedSafely": true
 }

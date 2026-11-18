@@ -231,11 +231,12 @@
           "customer_profiles": {
             "items": {
               "type": "string",
-              "maxLength": 1500,
-              "minLength": 1
+              "maxLength": 1000,
+              "minLength": 15
             },
             "type": "array",
             "maxItems": 12,
+            "minItems": 1,
             "title": "Customer Profiles"
           },
           "geographical_focus": {
