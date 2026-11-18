@@ -1,10 +1,18 @@
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import AfterValidator, BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from app.services.url_guard import normalize_url
 
-Text = Annotated[str, Field(min_length=1, max_length=1500)]
+
+def informative_text(value: str) -> str:
+    if not any(character.isalnum() for character in value):
+        raise ValueError("Text must contain meaningful letters or digits")
+    return value
+
+
+Text = Annotated[str, Field(min_length=1, max_length=1500), AfterValidator(informative_text)]
+Profile = Annotated[str, Field(min_length=15, max_length=1000), AfterValidator(informative_text)]
 Short = Annotated[str, Field(min_length=1, max_length=300)]
 Items = Annotated[list[Text], Field(max_length=12)]
 Platforms = Literal["Google", "Facebook", "Instagram", "LinkedIn", "X"]
@@ -103,7 +111,7 @@ class Audience(StrictModel):
     secondary_audience: Items
     industries: Items
     business_types: Items
-    customer_profiles: Items
+    customer_profiles: list[Profile] = Field(min_length=1, max_length=12)
     geographical_focus: str | None = Field(max_length=1000)
     geographical_evidence: list[Evidence] = Field(max_length=3)
     customer_needs: Items

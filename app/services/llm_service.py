@@ -32,11 +32,16 @@ rankings, traffic, market share, prices, or benchmark data anywhere in the resul
 These are recommendations, not measured rankings. Do not propose locations unsupported by evidence.
 4. top_services: five where supported. If fewer than five actual services/products are present, return
 only observed ones (1-5), or mark extra recommendations as inferred_recommendation with a reason.
-Observed services require exact quotes from sources. Inference is allowed for customer/industry/benefit
+Do not turn example customer projects or use cases into separate services. For a single SaaS product,
+list explicitly described functional capabilities instead. Observed services require exact quotes from sources. Inference is allowed for customer/industry/benefit
 fields when described cautiously. Product businesses may list product offerings as services.
 5. target_audience: primary/secondary audiences, industries, business_types, customer_profiles,
-customer_needs, interests and marketing_segments. Label audience deductions in inference_notes.
+customer_needs, interests and marketing_segments. Label audience deductions in inference_notes. Customer profiles must describe specific buyer situations
+in at least 15 characters, for example a team lead coordinating multiple client projects. Never return
+placeholder dots, dashes, empty strings or generic filler in any section.
 Use geographical_focus=null unless explicitly supported by geographical_evidence quotes.
+Do not state pricing structures, uptime or customer counts unless directly present in excerpts;
+attribute such numbers to website claims, not independently verified performance.
 Do not invent brand names or actual services. Brand evidence must support the brand identity.
 Keep output under roughly 3000 tokens: 2-3 short items per keyword/audience list, one potential strength
 and one potential gap per competitor, and one sentence (at most 18 words) per explanation. Select just
@@ -173,7 +178,17 @@ class LLMService:
         }
         document = {
             "sources": [
-                {"id": source.id, "url": source.url, "title": source.title, "h1": source.h1, "h2": source.h2}
+                {
+                    "id": source.id,
+                    "url": source.url,
+                    "title": source.title,
+                    "h1": source.h1,
+                    "h2": source.h2,
+                    "meta_description": source.meta_description,
+                    "image_count": source.image_count,
+                    "images_missing_alt": source.images_missing_alt,
+                    "canonical_present": bool(source.canonical),
+                }
                 for source in sources
             ],
             "excerpts": [

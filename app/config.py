@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
     openrouter_api_key: SecretStr = SecretStr("")
-    openrouter_model: str = "inclusionai/ling-3.2-flash:free"
+    openrouter_model: str = "nvidia/nemotron-3.5-super-vl:free"
     openrouter_fallback_model: str = ""
     llm_strict_schema: bool = True
     llm_disable_reasoning: bool = True

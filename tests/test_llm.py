@@ -171,3 +171,11 @@ async def test_free_fallback_once_on_rate_limit(settings, source, model_output):
 def test_paid_models_are_not_allowed():
     with pytest.raises(ValidationError):
         Settings(_env_file=None, openrouter_model="provider/paid-model")
+
+
+@pytest.mark.parametrize("placeholder", [".", "...", " "])
+def test_customer_profiles_must_be_meaningful(model_output, placeholder):
+    data = model_output.model_dump()
+    data["analysis"]["target_audience"]["customer_profiles"] = [placeholder]
+    with pytest.raises(ValidationError):
+        ModelOutput.model_validate(data)
