@@ -58,7 +58,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 4000 --no-proxy-headers
 
 Get your own key from [OpenRouter](https://openrouter.ai/settings/keys). The default model is the explicit free model `nvidia/nemotron-3.5-super-vl:free`, with reasoning disabled for this structured extraction task. `openrouter/free` is an optional dynamic alternative. Only the free router or model IDs ending in `:free` are accepted, and provider routing caps input/output prices at zero. There is no paid fallback. A key is still required for free models, and account/availability limits apply.
 
-**Verification status:** [102 automated tests](docs/evidence/tests.log), [Chromium UI checks](docs/evidence/browser-check.json), and a [real deployed analysis](docs/evidence/live-analysis.json) are included. Automated fixtures intercept upstreams; the live response is separate. The illustrative UI report is explicitly labeled and never used by the analysis endpoint. See [deployment instructions](docs/deployment.md).
+**Verification status:** [104 automated tests](docs/evidence/tests.log), [Chromium UI checks](docs/evidence/browser-check.json), and a [real deployed analysis](docs/evidence/live-analysis.json) are included. Automated fixtures intercept upstreams; the live response is separate. The illustrative UI report is explicitly labeled and never used by the analysis endpoint. See [deployment instructions](docs/deployment.md).
 
 ## API request and response
 
@@ -103,7 +103,7 @@ Every successful response includes:
 | Section | Content and safeguards |
 |---|---|
 | Brand & competitors | Brand name, category, overview, offerings and exact source quotes. Three competitor suggestions where the model can responsibly identify them; all comparisons are explicitly **unverified AI suggestions**. Fewer are allowed when uncertainty makes three unreliable. |
-| Five target queries | Exactly five distinct queries, collectively covering **Google, Facebook, Instagram, LinkedIn and X**, with intent, relevance and audience. No search-volume field exists. |
+| Five target queries | The model generates one query for each required platform key; the application expands these into exactly five distinct queries, collectively covering **Google, Facebook, Instagram, LinkedIn and X**, with intent, relevance and audience. No search-volume field exists. |
 | SEO | Primary, secondary, long-tail and business keywords; a title and meta description; supporting-page ideas and priority actions. HTML title/meta/H1/image-alt/canonical checks are measured separately from AI suggestions. |
 | Top services | Up to five actual products/services with exact quotes. Additional inferred recommendations must be labeled and explained. Returns fewer rather than inventing services. |
 | Target audience | Primary/secondary audiences, industries, business types, profiles, needs, interests and marketing segments. Geography is null unless supported by matching source quotes. |

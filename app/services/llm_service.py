@@ -24,8 +24,9 @@ Return all five analysis sections with useful, specific recommendations for this
 All competitors MUST have basis=ai_suggestion and verification_needed=true. There is NO independent
 competitor research in this request. Express potential_strengths and potential_gaps as hypotheses to
 verify, never measured facts. Return fewer competitors if uncertain and explain in limitations.
-2. Exactly 5 distinct target_search_queries, collectively covering Google, Facebook, Instagram,
-LinkedIn and X. Include intent, business_relevance and target_audience. No invented search volumes,
+2. target_search_queries is an object with exactly five required platform keys: Google, Facebook,
+Instagram, LinkedIn and X. Generate one DISTINCT query for each key with intent, business_relevance
+and target_audience. Do not generate platform arrays; the application assigns those from the keys. No invented search volumes,
 rankings, traffic, market share, prices, or benchmark data anywhere in the result.
 3. seo_improvements: primary, secondary, long-tail and business keywords, useful recommended_title
 (up to 80 chars), title_rationale, meta_description (up to 200 chars), supporting_content and priority_actions.
@@ -108,7 +109,29 @@ def grounded_schema(sources: list[Source], catalog: dict[str, Evidence] | None =
         "properties": {"quote_id": {"type": "string", "enum": list(catalog)}},
         "required": ["quote_id"],
     }
+    query = schema["$defs"]["SearchQuery"]
+    query["properties"].pop("platforms")
+    query["required"].remove("platforms")
+    platforms = ("Google", "Facebook", "Instagram", "LinkedIn", "X")
+    schema["$defs"]["Analysis"]["properties"]["target_search_queries"] = {
+        "type": "object",
+        "additionalProperties": False,
+        "properties": {platform: {"$ref": "#/$defs/SearchQuery"} for platform in platforms},
+        "required": list(platforms),
+    }
     return schema
+
+
+def expand_platform_queries(output: dict) -> dict:
+    queries = output.get("analysis", {}).get("target_search_queries")
+    if isinstance(queries, dict):
+        platforms = ("Google", "Facebook", "Instagram", "LinkedIn", "X")
+        if set(queries) != set(platforms):
+            raise AnalysisError("invalid_model_output", "Model omitted a required search platform")
+        output["analysis"]["target_search_queries"] = [
+            {**queries[platform], "platforms": [platform]} for platform in platforms
+        ]
+    return output
 
 
 def expand_evidence_refs(value, catalog: dict[str, Evidence]):
@@ -261,7 +284,7 @@ class LLMService:
             content = choice["message"]["content"]
             if not isinstance(content, str) or len(content) > 150_000:
                 raise ValueError("Invalid response body")
-            raw_output = expand_evidence_refs(json.loads(content), catalog)
+            raw_output = expand_platform_queries(expand_evidence_refs(json.loads(content), catalog))
             output = ModelOutput.model_validate(raw_output)
             validate_evidence(output, sources)
             usage = data.get("usage") or {}

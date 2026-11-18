@@ -179,3 +179,30 @@ def test_customer_profiles_must_be_meaningful(model_output, placeholder):
     data["analysis"]["target_audience"]["customer_profiles"] = [placeholder]
     with pytest.raises(ValidationError):
         ModelOutput.model_validate(data)
+
+
+def test_platform_query_wire_contract(settings, source, model_output):
+    from app.services.llm_service import expand_platform_queries
+    from scripts.fixture_utils import reference_fixture
+
+    catalog = evidence_catalog([source])
+    wire = reference_fixture(model_output, catalog)
+    schema = grounded_schema([source], catalog)
+    field = schema["$defs"]["Analysis"]["properties"]["target_search_queries"]
+    assert set(field["required"]) == {"Google", "Facebook", "Instagram", "LinkedIn", "X"}
+    expanded = expand_platform_queries(expand_evidence_refs(wire, catalog))
+    parsed = ModelOutput.model_validate(expanded)
+    assert [item.platforms for item in parsed.analysis.target_search_queries] == [
+        ["Google"],
+        ["Facebook"],
+        ["Instagram"],
+        ["LinkedIn"],
+        ["X"],
+    ]
+
+
+def test_missing_platform_wire_rejected():
+    from app.services.llm_service import expand_platform_queries
+
+    with pytest.raises(AnalysisError):
+        expand_platform_queries({"analysis": {"target_search_queries": {"Google": {}}}})

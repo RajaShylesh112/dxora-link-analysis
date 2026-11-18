@@ -15,4 +15,10 @@ def reference_fixture(output: ModelOutput, catalog: dict[str, Evidence]) -> dict
             return {key: convert(item) for key, item in value.items()}
         return value
 
-    return convert(output.model_dump())
+    result = convert(output.model_dump())
+    result["analysis"]["target_search_queries"] = {
+        platform: {key: value for key, value in query.items() if key != "platforms"}
+        for query in result["analysis"]["target_search_queries"]
+        for platform in query["platforms"]
+    }
+    return result
