@@ -5,6 +5,7 @@ const fs = require('node:fs');
 (async () => {
   const options = {headless: true};
   if (process.env.CHROMIUM_PATH) options.executablePath = process.env.CHROMIUM_PATH;
+  if (process.env.BROWSER_PROXY) options.proxy = {server: process.env.BROWSER_PROXY};
   const browser = await chromium.launch(options);
   const page = await browser.newPage({viewport: {width: 1440, height: 1100}, deviceScaleFactor: 1});
   const errors = [];

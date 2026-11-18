@@ -17,6 +17,7 @@ def settings():
     return Settings(
         _env_file=None,
         openrouter_api_key="test-not-a-real-key",
+        openrouter_model="openrouter/free",
         max_pages=1,
         requests_per_minute=60,
         cache_ttl_seconds=60,

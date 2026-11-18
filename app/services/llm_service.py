@@ -116,6 +116,8 @@ class LLMService:
             "temperature": 0.2,
             "max_tokens": 6500,
         }
+        if self.settings.llm_disable_reasoning:
+            payload["reasoning"] = {"enabled": False}
         try:
             async with asyncio.timeout(self.settings.llm_timeout_seconds):
                 response = await self.client.post(

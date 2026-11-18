@@ -10,8 +10,10 @@ A normal **Web Service** works; a paid Blueprint plan, database and Docker are n
 6. Select the **Free** instance type. Do not select Starter or another paid instance.
 7. Add environment variables:
    - `OPENROUTER_API_KEY`: your own secret, entered in Render only.
-   - `OPENROUTER_MODEL`: `openrouter/free`.
+   - `OPENROUTER_MODEL`: `inclusionai/ling-3.2-flash:free`.
    - `LLM_STRICT_SCHEMA`: `true`.
+   - `LLM_DISABLE_REASONING`: `true`.
+   - `LLM_TIMEOUT_SECONDS`: `100`.
    - `PYTHON_VERSION`: `3.12.14` (or rely on the repository's `.python-version`).
    - Optional `ANALYSIS_API_KEY` if you want a protected reviewer endpoint; send that key privately to reviewers, never in GitHub. Leave empty for a public rate-limited demo.
 8. Set Health Check Path to `/health`. The process can be healthy while the LLM key is absent/invalid; verify `analysis_configured` and run the actual API check too.

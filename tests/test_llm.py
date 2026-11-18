@@ -17,6 +17,7 @@ async def test_request_uses_free_model_schema_and_separates_untrusted_content(se
         assert request.url == "https://openrouter.ai/api/v1/chat/completions"
         payload = json.loads(request.content)
         assert payload["model"] == "openrouter/free"
+        assert payload["reasoning"] == {"enabled": False}
         assert payload["response_format"]["type"] == "json_schema"
         assert payload["provider"]["max_price"] == {"prompt": 0, "completion": 0}
         assert payload["provider"]["require_parameters"] is True

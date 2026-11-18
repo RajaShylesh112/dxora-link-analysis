@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-11-18T09:15:06.718001+00:00",
+  "base_url": "https://dxora-link-analysis.onrender.com",
+  "checks": {
+    "/": 200,
+    "/docs": 200,
+    "/openapi.json": 200,
+    "/health": 200
+  },
+  "unsafe_url_status": 422,
+  "unsafe_url_error": "invalid_request",
+  "scope": "Public deployment and SSRF input checks; not a live LLM success."
+}
