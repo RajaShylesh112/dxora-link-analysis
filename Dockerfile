@@ -6,4 +6,4 @@ RUN pip install --no-cache-dir -r requirements.txt && useradd --create-home appu
 COPY app ./app
 USER appuser
 EXPOSE 4000
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-4000} --no-proxy-headers"]
+CMD ["sh", "-c", "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-4000} --no-proxy-headers"]

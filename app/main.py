@@ -21,6 +21,12 @@ from app.services.llm_service import LLMService
 from app.services.website_extractor import WebsiteExtractor
 
 logger = logging.getLogger("linklens")
+logger.setLevel(logging.INFO)
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter("%(levelname)s %(name)s %(message)s"))
+    logger.addHandler(handler)
+logger.propagate = False
 logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("httpcore").setLevel(logging.WARNING)
 STATIC = Path(__file__).parent / "static"

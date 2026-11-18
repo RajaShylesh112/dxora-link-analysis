@@ -12,8 +12,9 @@ from app.config import Settings
 from app.main import RateLimiter, app
 from app.schemas import ModelOutput
 from app.services.analysis_service import AnalysisService
-from app.services.llm_service import LLMService
-from app.services.website_extractor import WebsiteExtractor
+from app.services.llm_service import LLMService, evidence_catalog
+from app.services.website_extractor import WebsiteExtractor, parse_page
+from scripts.fixture_utils import reference_fixture
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs/evidence"
@@ -31,6 +32,8 @@ def main():
     output = ModelOutput.model_validate_json((ROOT / "tests/fixtures/model-output.json").read_text())
     html = (ROOT / "tests/fixtures/agency.html").read_text()
     calls = []
+    source = parse_page("https://northstar.example/", html, "S1", 22000)[0]
+    wire = reference_fixture(output, evidence_catalog([source]))
 
     def handler(request):
         calls.append(request.url.host)
@@ -39,7 +42,7 @@ def main():
                 200,
                 json={
                     "model": "simulated/model:free",
-                    "choices": [{"finish_reason": "stop", "message": {"content": output.model_dump_json()}}],
+                    "choices": [{"finish_reason": "stop", "message": {"content": json.dumps(wire)}}],
                     "usage": {"prompt_tokens": 2100, "completion_tokens": 1600, "cost": 0},
                 },
             )

@@ -1,6 +1,7 @@
 OFFLINE DEMO: fictional website fixture and simulated provider; no real posts, live website requests, model calls or charges.
-INFO linklens request_id=e91b600e15604a30acff2a620108c60b outcome=success cached=False elapsed_ms=138
-INFO linklens request_id=7618fd5fc07649eaa3c69114d62d67ce outcome=success cached=True elapsed_ms=0
+INFO linklens.llm llm_attempt=1 outcome=success elapsed_ms=8
+INFO linklens request_id=d71c1be6e2a84f4e9b077fac413feb9b outcome=success cached=False elapsed_ms=14
+INFO linklens request_id=93f2476f6fc74c258d4bd398e50e0a30 outcome=success cached=True elapsed_ms=0
 POST /link-analysis -> 200; five validated sections; exact source quotes verified; simulated upstream calls: 2
 Second POST -> 200 cached; zero additional upstream calls
 Private metadata URL -> 422; zero additional upstream calls

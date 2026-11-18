@@ -29,7 +29,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 4000 --no-proxy-headers
 
 Get your own key from [OpenRouter](https://openrouter.ai/settings/keys). The default model is the explicit free model `inclusionai/ling-3.2-flash:free`, with reasoning disabled for this structured extraction task. `openrouter/free` is an optional dynamic alternative. Only the free router or model IDs ending in `:free` are accepted, and provider routing caps input/output prices at zero. There is no paid fallback. A key is still required for free models, and account/availability limits apply.
 
-**Verification status:** [97 automated tests](docs/evidence/tests.log) and [Chromium UI checks](docs/evidence/browser-check.json) validate the local implementation. Fixtures intercept website and LLM traffic; these are not live-model benchmarks. The illustrative UI report is explicitly labeled and never used by the analysis endpoint. Real analysis requires a configured OpenRouter key and public outbound HTTPS access. Deployment and live model evidence must be recorded before describing a demo as live; see [deployment instructions](docs/deployment.md).
+**Verification status:** [99 automated tests](docs/evidence/tests.log) and [Chromium UI checks](docs/evidence/browser-check.json) validate the local implementation. Fixtures intercept website and LLM traffic; these are not live-model benchmarks. The illustrative UI report is explicitly labeled and never used by the analysis endpoint. Real analysis requires a configured OpenRouter key and public outbound HTTPS access. Deployment and live model evidence must be recorded before describing a demo as live; see [deployment instructions](docs/deployment.md).
 
 ## API request and response
 
@@ -79,7 +79,7 @@ Every successful response includes:
 | Top services | Up to five actual products/services with exact quotes. Additional inferred recommendations must be labeled and explained. Returns fewer rather than inventing services. |
 | Target audience | Primary/secondary audiences, industries, business types, profiles, needs, interests and marketing segments. Geography is null unless supported by matching source quotes. |
 
-Source IDs link claims to text captured during the request. Evidence generation is constrained to a bounded enum of actual source excerpts, then checked again against the cited source. Exact-quote validation checks provenance, **not full semantic truth**: a matching quotation does not prove every interpretation is correct. Audience and benefit deductions are recommendations. Competitor websites are not crawled; independently researched competitor facts are outside this two-hour implementation.
+Source IDs link claims to text captured during the request. The LLM receives page metadata and a bounded selection of actual excerpts, not an unrestricted full-site crawl. The model selects IDs from a bounded catalog of actual excerpts. The application expands those IDs into exact quotes and source IDs, then checks them against captured content. Exact-quote validation checks provenance, **not full semantic truth**: a matching quotation does not prove every interpretation is correct. Audience and benefit deductions are recommendations. Competitor websites are not crawled; independently researched competitor facts are outside this two-hour implementation.
 
 ### Errors
 
@@ -139,7 +139,7 @@ Sources: [OpenRouter free router](https://openrouter.ai/docs/guides/routing/rout
 
 **Fallback:** optionally set `OPENROUTER_FALLBACK_MODEL` to an explicit free model supporting structured outputs, selected from the live catalog. One alternate call is allowed for rate/availability/timeout/invalid-output failures; authentication failures are not retried. No fallback is configured by default. Model IDs may retire; refresh the catalog instead of assuming historical free names remain available.
 
-**Estimated per analysis:** approximately 8,000–15,000 input tokens (including instructions/schema) and 2,500–5,000 output tokens. The 22,000-character content cap is **not** a token guarantee; non-English text/tokenizers vary. At a representative 8,000 input + 3,500 output tokens:
+**Estimated per analysis:** approximately 5,000–10,000 input tokens (including instructions/schema) and 2,500–5,000 output tokens. The 22,000-character content cap is **not** a token guarantee; non-English text/tokenizers vary. At a representative 8,000 input + 3,500 output tokens:
 
 | Route/model | Estimated token charge |
 |---|---:|
@@ -150,7 +150,7 @@ Sources: [OpenRouter free router](https://openrouter.ai/docs/guides/routing/rout
 
 Formula: `(input_tokens × input_rate + output_tokens × output_rate) / 1,000,000`. Estimates exclude taxes, search/grounding tools and any extra billed reasoning tokens. Provider-reported usage and cost are returned when available; null means unavailable, not zero. Expected uncached latency is an **unmeasured planning estimate of 10–100 seconds**; free queues may exceed it and timeout. Render cold-start latency is additional. See [evaluation protocol](docs/evaluation.md) for how to produce real measurements.
 
-Cost controls: remove script/style/navigation/footer/form content; deduplicate lines; cap the quote enum at 14k characters; cap pages, HTML and combined text; avoid sending the schema twice in strict mode; one normal model call; cache only fully validated successes for 15 minutes (64-entry LRU); coalesce simultaneous identical requests; bound concurrency; cap output at 6,500 tokens and disable optional reasoning. Cached responses retain the **original generation's usage**, not new token charges.
+Cost controls: remove script/style/navigation/footer/form content; deduplicate lines; send a bounded excerpt catalog capped at 14k characters; cap pages, HTML and combined text; avoid sending the schema twice in strict mode; one normal model call; cache only fully validated successes for 15 minutes (64-entry LRU); coalesce simultaneous identical requests; bound concurrency; cap output at 5,000 tokens and disable optional reasoning. Cached responses retain the **original generation's usage**, not new token charges.
 
 ## Tests, evidence and deployment
 
@@ -179,7 +179,7 @@ python -m scripts.smoke --base-url https://YOUR-SERVICE.onrender.com \
 - Website content is treated as untrusted prompt data. Scripts/hidden HTML are removed, instructions are isolated, and output/evidence are validated. These controls reduce risk; they do not prove immunity to every prompt-injection attack.
 - The UI uses `textContent`, not HTML insertion, for model/site output. A browser test checks malicious-looking model text remains inert. A same-origin CSP applies to the home page.
 - Optional `ANALYSIS_API_KEY` protects analysis with `X-API-Key`; it is distinct from the server-side OpenRouter key. The UI holds it only in the current tab, never localStorage. Default public reviewer demos are rate-limited (6 requests/minute per ASGI peer) and limited to two active analyses. Behind a reverse proxy this may function as a shared limit. Use one worker for the included in-memory controls; configure trusted edge rate limiting before scaling.
-- No raw website text, submitted URLs, prompts or keys are logged. Logs include only request ID, fixed outcome, cache flag and timing. Access logs may include endpoint paths. Public website text is sent to OpenRouter and its chosen provider; do not submit confidential URLs/content.
+- No raw website text, submitted URLs, prompts or keys are logged. Logs include request ID, fixed outcome, cache flag, provider attempt number and timing. Access logs may include endpoint paths. Public website text is sent to OpenRouter and its chosen provider; do not submit confidential URLs/content.
 - Analysis uses server-rendered HTML, not a browser crawler. JavaScript-only pages, bot restrictions and login content can fail. Homepage plus selected about/service/product pages is a bounded sample, not a complete crawl or ranking audit.
 - Cache and rate limits are in memory and reset on restart/Render sleep. Successful cached data can be up to the configured TTL old. Use TTL zero for uncached evaluation.
 - Only OpenRouter is implemented; no search-volume/ranking API, paid grounded search, automated fact-checking of competitor claims, persistent database or background queue is included.

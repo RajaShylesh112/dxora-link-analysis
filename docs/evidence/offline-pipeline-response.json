@@ -334,11 +334,11 @@
     }
   ],
   "metadata": {
-    "request_id": "e91b600e15604a30acff2a620108c60b",
-    "generated_at": "2026-11-18T09:08:35.311158+00:00",
-    "elapsed_ms": 138,
+    "request_id": "d71c1be6e2a84f4e9b077fac413feb9b",
+    "generated_at": "2026-11-18T09:36:17.184681+00:00",
+    "elapsed_ms": 14,
     "provider": "OpenRouter",
-    "model_requested": "openrouter/free",
+    "model_requested": "inclusionai/ling-3.2-flash:free",
     "model_used": "simulated/model:free",
     "cached": false,
     "cache_age_seconds": 0,

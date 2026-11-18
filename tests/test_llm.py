@@ -7,7 +7,13 @@ from pydantic import ValidationError
 from app.config import Settings
 from app.errors import AnalysisError
 from app.schemas import ModelOutput
-from app.services.llm_service import LLMService, grounded_schema, validate_evidence
+from app.services.llm_service import (
+    LLMService,
+    evidence_catalog,
+    expand_evidence_refs,
+    grounded_schema,
+    validate_evidence,
+)
 from tests.conftest import model_response
 
 
@@ -20,12 +26,14 @@ async def test_request_uses_free_model_schema_and_separates_untrusted_content(se
         assert payload["reasoning"] == {"enabled": False}
         assert payload["response_format"]["type"] == "json_schema"
         evidence_schema = payload["response_format"]["json_schema"]["schema"]["$defs"]["Evidence"]
-        assert all(quote in source.text for quote in evidence_schema["properties"]["quote"]["enum"])
-        assert evidence_schema["properties"]["source_id"]["enum"] == ["S1"]
+        assert evidence_schema["properties"]["quote_id"]["enum"]
+        assert "source_id" not in evidence_schema["properties"]
         assert payload["provider"]["max_price"] == {"prompt": 0, "completion": 0}
         assert payload["provider"]["require_parameters"] is True
         assert "UNTRUSTED DATA" in payload["messages"][0]["content"]
-        assert source.text in json.loads(payload["messages"][1]["content"])["sources"][0]["text"]
+        document = json.loads(payload["messages"][1]["content"])
+        assert document["sources"][0]["id"] == "S1"
+        assert all(item["text"] in source.text for item in document["excerpts"])
         return model_response(model_output)
 
     async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
@@ -95,13 +103,26 @@ def test_grounded_schema_is_bounded_and_supports_multiple_sources(source):
     second = source.model_copy(
         update={"id": "S2", "text": "A different public business source with enough context."}
     )
-    schema = grounded_schema([source, second])
+    catalog = evidence_catalog([source, second])
+    schema = grounded_schema([source, second], catalog)
     evidence = schema["$defs"]["Evidence"]["properties"]
-    assert evidence["source_id"]["enum"] == ["S1", "S2"]
-    quotes = evidence["quote"]["enum"]
-    assert quotes and sum(map(len, quotes)) <= 14000
-    assert all(quote in source.text or quote in second.text for quote in quotes)
-    assert second.text in quotes
+    assert evidence["quote_id"]["enum"] == list(catalog)
+    assert catalog and sum(len(item.quote) for item in catalog.values()) <= 14000
+    assert all(item.quote in source.text or item.quote in second.text for item in catalog.values())
+    assert second.text in [item.quote for item in catalog.values()]
+
+
+def test_evidence_reference_expands_to_actual_source(source):
+    catalog = evidence_catalog([source])
+    quote_id = next(iter(catalog))
+    expanded = expand_evidence_refs({"evidence": [{"quote_id": quote_id}]}, catalog)
+    assert expanded["evidence"][0] == catalog[quote_id].model_dump()
+    assert expanded["evidence"][0]["quote"] in source.text
+
+
+def test_unknown_reference_is_rejected(source):
+    with pytest.raises(AnalysisError):
+        expand_evidence_refs({"quote_id": "invented-reference"}, evidence_catalog([source]))
 
 
 @pytest.mark.parametrize(
