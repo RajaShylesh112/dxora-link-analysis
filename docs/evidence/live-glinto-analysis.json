@@ -1,0 +1,492 @@
+{
+  "success": true,
+  "website": "https://glinto.co.kr/en",
+  "brand": {
+    "name": "Glinto",
+    "category": "Creative studio",
+    "summary": "Glinto is a creative studio where one team takes brand strategy and identity, film and photography, design, and web and app development from start to finish.",
+    "products_and_services": [
+      "Brand strategy",
+      "Naming",
+      "Visual identity",
+      "Brand guidelines",
+      "Brand film",
+      "Photography",
+      "Motion graphics",
+      "3D & CGI",
+      "UI/UX design",
+      "Design system",
+      "Art direction",
+      "Editorial & print design and production services for print materials such as brochures and catalogs that support brand identity and campaigns across physical channels, inferred from Editorial & Print service listing on the website, inference_recommendation=true, reason=Service category listed without detailed description on the website, so the exact scope of print deliverables should be confirmed with Glinto before marketing it as a standalone offering"
+    ],
+    "evidence": [
+      {
+        "source_id": "S1",
+        "quote": "Title: Glinto — Creative studio\nDescription: Glinto is a creative studio where one team takes brand strategy and identity, film and photography, design, and web and app development from start to finish."
+      },
+      {
+        "source_id": "S3",
+        "quote": "Everything your brand needs, from one team\nFrom brand strategy to design, media and development, specialists in each field work together."
+      },
+      {
+        "source_id": "S3",
+        "quote": "BX\nBrand Strategy"
+      },
+      {
+        "source_id": "S3",
+        "quote": "Capture it"
+      },
+      {
+        "source_id": "S3",
+        "quote": "Dress it\nDesign"
+      }
+    ]
+  },
+  "analysis": {
+    "competitor_analysis": {
+      "brand_overview": "Glinto positions itself as a single-team creative studio combining brand strategy, media, design, and engineering under one roof.",
+      "competitors": [
+        {
+          "name": "Wunderman Thompson Korea",
+          "comparison": "Large integrated agency offering brand strategy, creative production, and digital development at scale.",
+          "potential_strengths": [
+            "Hypothesis: larger client roster and global network may attract enterprise brands seeking full-service scale."
+          ],
+          "potential_gaps": [
+            "Hypothesis: bigger teams may lack the single-team continuity Glinto emphasizes."
+          ],
+          "basis": "ai_suggestion",
+          "verification_needed": true
+        },
+        {
+          "name": "Cheil Worldwide",
+          "comparison": "Major Korean marketing agency with brand, media, and digital capabilities across industries.",
+          "potential_strengths": [
+            "Hypothesis: deep local market relationships and Samsung group ties may win large Korean accounts."
+          ],
+          "potential_gaps": [
+            "Hypothesis: corporate structure may feel less nimble than a boutique creative studio."
+          ],
+          "basis": "ai_suggestion",
+          "verification_needed": true
+        },
+        {
+          "name": "Dentsu Korea",
+          "comparison": "International agency network providing branding, media planning, and digital services in Korea.",
+          "potential_strengths": [
+            "Hypothesis: global case studies and cross-market experience may appeal to multinational clients."
+          ],
+          "potential_gaps": [
+            "Hypothesis: standardized processes may not match Glinto's custom, brand-led approach."
+          ],
+          "basis": "ai_suggestion",
+          "verification_needed": true
+        }
+      ],
+      "strengths": [
+        "One team handles strategy, media, design, and development end to end.",
+        "Explicit focus on safer AI with expert review and strict security rules."
+      ],
+      "opportunities": [
+        "Highlight the 80-project experience figure with client names or case studies.",
+        "Publish service-specific pages with detailed deliverables and pricing tiers."
+      ],
+      "limitations": "No independent competitor research was performed; competitor names are AI suggestions and must be verified before use in campaigns."
+    },
+    "target_search_queries": [
+      {
+        "query": "creative studio brand strategy web development Korea",
+        "platforms": [
+          "Google"
+        ],
+        "intent": "informational",
+        "business_relevance": "Matches Glinto's combined branding and development offering for Korean and international clients.",
+        "target_audience": "Marketing leaders and founders seeking a single creative partner"
+      },
+      {
+        "query": "branding agency Korea portfolio",
+        "platforms": [
+          "Facebook"
+        ],
+        "intent": "discovery",
+        "business_relevance": "Reaches business owners browsing visual creative work and agency case studies.",
+        "target_audience": "Brand managers and startup founders"
+      },
+      {
+        "query": "brand film photography studio Seoul",
+        "platforms": [
+          "Instagram"
+        ],
+        "intent": "discovery",
+        "business_relevance": "Aligns with Glinto's media and visual identity services shown on the site.",
+        "target_audience": "Creative directors and product marketers"
+      },
+      {
+        "query": "BX branding agency Korea",
+        "platforms": [
+          "LinkedIn"
+        ],
+        "intent": "professional_research",
+        "business_relevance": "Targets B2B decision makers searching for brand experience partners.",
+        "target_audience": "CMOs and agency procurement leads"
+      },
+      {
+        "query": "AI integration web development agency",
+        "platforms": [
+          "X"
+        ],
+        "intent": "informational",
+        "business_relevance": "Connects with tech audiences interested in Glinto's AI/AX and engineering services.",
+        "target_audience": "CTOs and product leads"
+      }
+    ],
+    "seo_improvements": {
+      "primary_keyword": "creative studio Korea",
+      "secondary_keywords": [
+        "brand strategy agency",
+        "web and app development",
+        "brand film production"
+      ],
+      "long_tail_keywords": [
+        "one team brand strategy design development Korea",
+        "safer AI integration for brand services",
+        "brand film and photography studio Seoul"
+      ],
+      "business_keywords": [
+        "branding",
+        "media",
+        "design",
+        "engineering",
+        "AI/AX"
+      ],
+      "recommended_title": "Glinto | Creative Studio for Brand Strategy, Media, Design & Engineering",
+      "title_rationale": "Includes the brand name, category, and all four core service pillars within 80 characters to improve click relevance.",
+      "meta_description": "Glinto is one creative team for brand strategy, film and photography, design, and web and app development. Safer AI, expert hands, start to finish.",
+      "supporting_content": [
+        {
+          "title": "How one team runs brand strategy to launch",
+          "content_type": "blog",
+          "rationale": "Explains the end-to-end process and supports the 'from start to finish' value proposition."
+        },
+        {
+          "title": "Safer AI in expert hands",
+          "content_type": "service_page",
+          "rationale": "Differentiates Glinto's AI/AX offering with security and expert review details."
+        }
+      ],
+      "priority_actions": [
+        "Add descriptive alt text to all 8 homepage images and 4 services images.",
+        "Create dedicated pages for BX, Media, Design, and Engineering with H1s and meta descriptions.",
+        "Implement schema.org Organization and Service markup on the homepage and services page."
+      ]
+    },
+    "top_services": [
+      {
+        "name": "Brand strategy and identity (BX)",
+        "description": "Brand strategy, naming, visual identity, and brand guidelines built into one consistent direction.",
+        "target_industry": "Brands across industries",
+        "target_customer": "Companies needing a unified brand foundation",
+        "main_benefit": "One consistent identity from naming to guidelines",
+        "basis": "observed",
+        "evidence": [
+          {
+            "source_id": "S1",
+            "quote": "Brand Guidelines\nWe look closely for what your brand does best and set a direction that turns it into an edge. From naming to logo, color and guidelines, we build one consistent identity."
+          }
+        ],
+        "inference_reason": ""
+      },
+      {
+        "name": "Media",
+        "description": "Brand films, photography, motion graphics, 3D & CGI, and brand film production in formats that fit the brand.",
+        "target_industry": "Brands across industries",
+        "target_customer": "Companies needing visual storytelling assets",
+        "main_benefit": "Brand and product stories that land at a glance",
+        "basis": "observed",
+        "evidence": [
+          {
+            "source_id": "S1",
+            "quote": "Brand films, photography, motion graphics and 3D visuals, in whatever format fits. We tell the story of your brand and product in scenes that land at a glance."
+          }
+        ],
+        "inference_reason": ""
+      },
+      {
+        "name": "Design",
+        "description": "UI/UX design, design system, art direction, editorial & print for web, app screens, campaign visuals, and print.",
+        "target_industry": "Brands across industries",
+        "target_customer": "Companies needing customer-facing visual design",
+        "main_benefit": "Clear brand and product value at first sight",
+        "basis": "observed",
+        "evidence": [
+          {
+            "source_id": "S1",
+            "quote": "Web and app screens, campaign visuals and print: we design everything your customers see. We make the value of your brand and product clear at first sight."
+          }
+        ],
+        "inference_reason": ""
+      },
+      {
+        "name": "Engineering",
+        "description": "Web development, app development, AI integration, and maintenance & operation for stable launch and ongoing care.",
+        "target_industry": "Brands across industries",
+        "target_customer": "Companies needing web and app products built and operated",
+        "main_benefit": "Planned build through stable launch and operation",
+        "basis": "observed",
+        "evidence": [
+          {
+            "source_id": "S1",
+            "quote": "Maintenance & Operation\nExperienced web and app developers plan and build the product your goals call for. We see it through a stable launch, then stay on for operation and maintenance."
+          }
+        ],
+        "inference_reason": ""
+      },
+      {
+        "name": "AI/AX",
+        "description": "Safer AI services including early MVP builds, maintenance for AI-built services, and custom AI agents for customer answering, document search, and repetitive work.",
+        "target_industry": "Brands across industries",
+        "target_customer": "Companies adopting AI with security and expert oversight needs",
+        "main_benefit": "AI results checked by experts under strict security rules",
+        "basis": "observed",
+        "evidence": [
+          {
+            "source_id": "S2",
+            "quote": "Safer AI, in the hands of experts\nGlinto cares about using AI accurately before using it fast. Your materials are handled under strict security rules, and every result is checked by an expert."
+          }
+        ],
+        "inference_reason": ""
+      }
+    ],
+    "target_audience": {
+      "primary_audience": [
+        "Brand managers",
+        "Marketing directors",
+        "Founders"
+      ],
+      "secondary_audience": [
+        "CTOs",
+        "Product leads",
+        "Creative directors"
+      ],
+      "industries": [
+        "Consumer brands",
+        "Technology",
+        "Retail",
+        "Services"
+      ],
+      "business_types": [
+        "Startups",
+        "Growth-stage companies",
+        "Established brands"
+      ],
+      "customer_profiles": [
+        "A brand manager coordinating a rebrand across logo, website, and packaging",
+        "A startup founder needing brand strategy plus web and app development from one team",
+        "A marketing director commissioning brand film, photography, and motion graphics for a product launch"
+      ],
+      "geographical_focus": null,
+      "geographical_evidence": [],
+      "customer_needs": [
+        "Consistent brand identity across channels",
+        "Visual storytelling assets such as film and photography",
+        "Web and app development with ongoing operation",
+        "Safer AI integration with expert review"
+      ],
+      "interests": [
+        "Brand strategy",
+        "Visual identity",
+        "Digital product development",
+        "AI safety and integration"
+      ],
+      "marketing_segments": [
+        "B2B service buyers",
+        "Creative procurement",
+        "Technology-enabled branding"
+      ],
+      "inference_notes": "Industries and business types are inferred from 'brands across industries' language; no specific client names or sectors are stated on the site."
+    }
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "url": "https://glinto.co.kr/en",
+      "title": "Glinto — Creative studio",
+      "meta_description": "Glinto is a creative studio where one team takes brand strategy and identity, film and photography, design, and web and app development from start to finish.",
+      "h1": [
+        ""
+      ],
+      "h2": [
+        "Everything your brand needs, from one team",
+        "Solutions shaped by how your brand runs",
+        "Experience with brands across industries",
+        "Glinto ready when you are"
+      ],
+      "text": "Title: Glinto — Creative studio\nDescription: Glinto is a creative studio where one team takes brand strategy and identity, film and photography, design, and web and app development from start to finish.\nGlinto — Creative studio\nCreative studio for\nidentity, visuals, and code.\nview all works →\nand we can\nMedia\nLABIERE\nservices\nEverything your brand needs, from one team\nFrom brand strategy to design, media and development, specialists in each field work together.\nStart small with the one service you need right now.\nPlan it\nBX\nBrand Strategy\nNaming\nVisual Identity\nBrand Guidelines\nWe look closely for what your brand does best and set a direction that turns it into an edge. From naming to logo, color and guidelines, we build one consistent identity.\nCapture it\nBrand Film\nPhotography\nMotion Graphics\n3D & CGI\nBrand films, photography, motion graphics and 3D visuals, in whatever format fits. We tell the story of your brand and product in scenes that land at a glance.\nDress it\nDesign\nUI/UX Design\nDesign System\nArt Direction\nEditorial & Print\nWeb and app screens, campaign visuals and print: we design everything your customers see. We make the value of your brand and product clear at first sight.\nBuild it\nEngineering\nWeb Development\nApp Development\nAI Integration\nMaintenance & Operation\nExperienced web and app developers plan and build the product your goals call for. We see it through a stable launch, then stay on for operation and maintenance.\nHow we work\nSolutions shaped by how your brand runs\nEvery brand runs on its own strategy.\nWe study your needs closely and apply the solution that fits your brand.\n01\nBriefing\nWe study your brand and needs, then set the goals, audience and scope.\n02\nStrategy\nFrom those goals, we plan the brand direction, key message and roadmap.\n03\nMaking\nWe make everything from film and photos to design, web and apps.\n04\nLaunch & care\nAfter launch, we track results, keep improving, and handle maintenance.\nExperience\nExperience with brands across industries\nDrawing on work with brands in many industries, we promise carefully finished work that fits your brand.\nBrands\n60\n+\nProjects\n80\nGlinto ready when you are\nNew brand or renewal, Glinto is open to any project. From the smallest task to building a whole brand, tell us about it.\nstart a project",
+      "canonical": "https://glinto.co.kr/en",
+      "image_count": 8,
+      "images_missing_alt": 8,
+      "word_count": 356,
+      "content_hash": "41f73854c868d66a97b68cb816a85230146af3a0955be0d773638555e6ccfe1c",
+      "truncated": false
+    },
+    {
+      "id": "S2",
+      "url": "https://glinto.co.kr/en/about",
+      "title": "About — Glinto",
+      "meta_description": "How Glinto works and what we do: brand strategy, film and photography, design, web and app development, and AI in expert hands.",
+      "h1": [
+        "Creative studio for Identity · Visuals · and Code"
+      ],
+      "h2": [
+        "Core value Core value",
+        "What we do",
+        "Safer AI, in the hands of experts",
+        "Experience with brands across industries",
+        "Glinto ready when you are"
+      ],
+      "text": "Title: About — Glinto\nDescription: How Glinto works and what we do: brand strategy, film and photography, design, web and app development, and AI in expert hands.\nAbout — Glinto\nAbout Glinto\nCreative studio for\nIdentity · Visuals · and Code\nBuilt on three areas, brand strategy, design and media, and engineering, Glinto covers the whole of building a brand.\nCore value\nWe carry your brand's own value in one consistent direction, and make it clear.\nClearly\nWith a sharp eye, we find the story your brand wants to tell and put it in order.\nIn one voice\nFrom logo and website to packaging and social, we bring every part of the brand under one standard, so together they express a single brand value.\nDistinctly\nWe look for the story only your brand has, down to its makers' convictions and taste and the details in the product. Then we design so that this value shows clearly in every part.\nSomething new\nWe are open to work that doesn't fit a set category. If it's creative, we're in, whatever the format.\nServices\nWhat we do\nSpecialists in brand strategy, media, design and development work together.\nPick only the services you need to start a project.\nBranding\nPlan it!\nWe study the market and competing brands to set your brand's direction and message.\nFrom naming to logo, color and guidelines, we build one consistent identity.\nBrand Strategy\nVisual Identity\nBrand Guidelines\nMedia\nCapture it!\nBrand films, photography, motion graphics, 3D and more, in many formats.\nWe tell the story of your brand and product in scenes that land at a glance.\nPhotography\nBrand Film\n3D Visualization & CGI\nDesign\nDress it!\nWeb and app screens, graphics and product pages: we design every screen your customers see.\nWe make the value of your brand and product clear at first sight.\nDesign System\nUI/UX\nArt Direction\nEngineering\nBuild it!\nExperienced web and app developers plan and build a service that fits its purpose.\nBeyond a stable launch, we stay on for operation and maintenance.\nWeb\nApp\nOperation & Maintenance\nAI/AX\nSafer AI, in the hands of experts\nGlinto cares about using AI accurately before using it fast. Your materials are handled under strict security rules, and every result is checked by an expert.\nEarly MVP builds\nWe build the first version you need to test your idea, quickly. AI speeds up the work, while our development team designs the core features and structure itself, building a service that can run for the long term.\nMaintenance for services built with AI\nEven a service started with vibe coding needs bug fixes and better features once its users grow. Our development team studies the existing code, improves it, and brings the service to a finished standard.\nAn AI agent of your own\nAnswering customers, searching internal documents, handling repetitive work: we design and build AI agents around your company's data and the way you work.\nExperience\nExperience with brands across industries\nDrawing on work with brands in many industries, we promise carefully finished work that fits your brand.\nBrands\n60\n+\nProjects\n80\nGlinto ready when you are\nNew brand or renewal, Glinto is open to any project. From the smallest task to building a whole brand, tell us about it.\nstart a project",
+      "canonical": "https://glinto.co.kr/en/about",
+      "image_count": 0,
+      "images_missing_alt": 0,
+      "word_count": 521,
+      "content_hash": "5c22da365dfab7b834c2e42850462db400af88daf8803173ea35782cd341b66b",
+      "truncated": false
+    },
+    {
+      "id": "S3",
+      "url": "https://glinto.co.kr/en/services",
+      "title": "Services — Glinto",
+      "meta_description": "Brand strategy and identity (BX), film and photography (Media), web, app and product page design (Design), and web and app development and operation (Engineering). The services of Glinto.",
+      "h1": [
+        "Glinto Services"
+      ],
+      "h2": [
+        "Everything your brand needs, from one team",
+        "Safer AI, in the hands of experts",
+        "What we do",
+        "Glinto ready when you are"
+      ],
+      "text": "Title: Services — Glinto\nDescription: Brand strategy and identity (BX), film and photography (Media), web, app and product page design (Design), and web and app development and operation (Engineering). The services of Glinto.\nServices — Glinto\nGlinto Services\nservices\nEverything your brand needs, from one team\nFrom brand strategy to design, media and development, specialists in each field work together.\nStart small with the one service you need right now.\nPlan it\nBX\nBrand Strategy\nNaming\nVisual Identity\nBrand Guidelines\nWe look closely for what your brand does best and set a direction that turns it into an edge. From naming to logo, color and guidelines, we build one consistent identity.\nCapture it\nMedia\nBrand Film\nPhotography\nMotion Graphics\n3D & CGI\nBrand films, photography, motion graphics and 3D visuals, in whatever format fits. We tell the story of your brand and product in scenes that land at a glance.\nDress it\nDesign\nUI/UX Design\nDesign System\nArt Direction\nEditorial & Print\nWeb and app screens, campaign visuals and print: we design everything your customers see. We make the value of your brand and product clear at first sight.\nBuild it\nEngineering\nWeb Development\nApp Development\nAI Integration\nMaintenance & Operation\nExperienced web and app developers plan and build the product your goals call for. We see it through a stable launch, then stay on for operation and maintenance.\nAI/AX\nSafer AI, in the hands of experts\nGlinto cares about using AI accurately before using it fast. Your materials are handled under strict security rules, and every result is checked by an expert.\nEarly MVP builds\nWe build the first version you need to test your idea, quickly. AI speeds up the work, while our development team designs the core features and structure itself, building a service that can run for the long term.\nMaintenance for services built with AI\nEven a service started with vibe coding needs bug fixes and better features once its users grow. Our development team studies the existing code, improves it, and brings the service to a finished standard.\nAn AI agent of your own\nAnswering customers, searching internal documents, handling repetitive work: we design and build AI agents around your company's data and the way you work.\nServices\nWhat we do\nSpecialists in brand strategy, media, design and development work together.\nPick only the services you need to start a project.\nBranding\nPlan it!\nWe study the market and competing brands to set your brand's direction and message.\nFrom naming to logo, color and guidelines, we build one consistent identity.\nCapture it!\nBrand films, photography, motion graphics, 3D and more, in many formats.\nWe tell the story of your brand and product in scenes that land at a glance.\n3D Visualization & CGI\nDress it!\nWeb and app screens, graphics and product pages: we design every screen your customers see.\nWe make the value of your brand and product clear at first sight.\nUI/UX\nBuild it!\nExperienced web and app developers plan and build a service that fits its purpose.\nBeyond a stable launch, we stay on for operation and maintenance.\nWeb\nApp\nOperation & Maintenance\nGlinto ready when you are\nNew brand or renewal, Glinto is open to any project. From the smallest task to building a whole brand, tell us about it.\nstart a project",
+      "canonical": "https://glinto.co.kr/en/services",
+      "image_count": 4,
+      "images_missing_alt": 4,
+      "word_count": 520,
+      "content_hash": "a37b228d6a29999ecb70e89af38e34be7edaf5c895413e311a70d1a0b7704423",
+      "truncated": false
+    }
+  ],
+  "seo_observations": [
+    {
+      "source_id": "S1",
+      "check": "title",
+      "observed": "24 characters",
+      "recommendation": "Use a distinct, descriptive title with the primary topic; length is a display heuristic, not a ranking rule"
+    },
+    {
+      "source_id": "S1",
+      "check": "meta_description",
+      "observed": "157 characters",
+      "recommendation": "Write a clear summary and value proposition; search engines may rewrite snippets"
+    },
+    {
+      "source_id": "S1",
+      "check": "h1",
+      "observed": "1 H1 headings",
+      "recommendation": "Use a clear page topic and a meaningful heading hierarchy"
+    },
+    {
+      "source_id": "S1",
+      "check": "image_alt",
+      "observed": "8 of 8 images have no non-empty alt",
+      "recommendation": "Review informative images for descriptive alt text; decorative images may correctly use empty alt"
+    },
+    {
+      "source_id": "S1",
+      "check": "canonical",
+      "observed": "Present (not fetched or verified)",
+      "recommendation": "Review canonical URL choices if duplicate URL versions exist"
+    },
+    {
+      "source_id": "S2",
+      "check": "title",
+      "observed": "14 characters",
+      "recommendation": "Use a distinct, descriptive title with the primary topic; length is a display heuristic, not a ranking rule"
+    },
+    {
+      "source_id": "S2",
+      "check": "meta_description",
+      "observed": "127 characters",
+      "recommendation": "Write a clear summary and value proposition; search engines may rewrite snippets"
+    },
+    {
+      "source_id": "S2",
+      "check": "h1",
+      "observed": "1 H1 headings",
+      "recommendation": "Use a clear page topic and a meaningful heading hierarchy"
+    },
+    {
+      "source_id": "S2",
+      "check": "image_alt",
+      "observed": "0 of 0 images have no non-empty alt",
+      "recommendation": "Review informative images for descriptive alt text; decorative images may correctly use empty alt"
+    },
+    {
+      "source_id": "S2",
+      "check": "canonical",
+      "observed": "Present (not fetched or verified)",
+      "recommendation": "Review canonical URL choices if duplicate URL versions exist"
+    },
+    {
+      "source_id": "S3",
+      "check": "title",
+      "observed": "17 characters",
+      "recommendation": "Use a distinct, descriptive title with the primary topic; length is a display heuristic, not a ranking rule"
+    },
+    {
+      "source_id": "S3",
+      "check": "meta_description",
+      "observed": "187 characters",
+      "recommendation": "Write a clear summary and value proposition; search engines may rewrite snippets"
+    },
+    {
+      "source_id": "S3",
+      "check": "h1",
+      "observed": "1 H1 headings",
+      "recommendation": "Use a clear page topic and a meaningful heading hierarchy"
+    },
+    {
+      "source_id": "S3",
+      "check": "image_alt",
+      "observed": "4 of 4 images have no non-empty alt",
+      "recommendation": "Review informative images for descriptive alt text; decorative images may correctly use empty alt"
+    },
+    {
+      "source_id": "S3",
+      "check": "canonical",
+      "observed": "Present (not fetched or verified)",
+      "recommendation": "Review canonical URL choices if duplicate URL versions exist"
+    }
+  ],
+  "metadata": {
+    "request_id": "db07e47c43494028af738bc5ee4c0b1d",
+    "generated_at": "2026-11-18T10:09:23.665992+00:00",
+    "elapsed_ms": 20728,
+    "provider": "OpenRouter",
+    "model_requested": "nvidia/nemotron-3.5-super-vl:free",
+    "model_used": "nvidia/nemotron-3.5-super-vl:free",
+    "cached": false,
+    "cache_age_seconds": 0,
+    "usage": {
+      "input_tokens": 5334,
+      "output_tokens": 2139,
+      "reported_cost_usd": 0.0
+    },
+    "warnings": [
+      "Server-rendered HTML only; JavaScript content and the full website may not be represented",
+      "Competitors are AI suggestions; strengths and gaps require independent research",
+      "The model uses a bounded catalog of captured excerpts; recommendations should be reviewed in context",
+      "Search queries, SEO changes and marketing segments are recommendations, not measured performance"
+    ],
+    "competitor_research": "ai_suggestions_not_independently_verified"
+  }
+}

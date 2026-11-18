@@ -9,6 +9,8 @@
 | `offline-pipeline-response.json` | Full HTTP endpoint → extraction → model integration → schema/evidence validation path, with HTTPX-intercepted upstreams | Real upstream traffic |
 | `deployment-check.json` | Actual public root/docs/schema/health responses and private-URL rejection | A completed LLM result |
 | `live-trial-errors.json` | Actual timeout, rate-limit and quote-validation failures encountered during live verification | A successful analysis |
+| `live-glinto-analysis.json` | Real uncached Glinto analysis after the search-platform fix; all five sections and source references validated | A universal benchmark |
+| `postdeploy-basecamp-analysis.json` | Fresh Basecamp analysis after the redesigned UI deployment | A guarantee of free-model availability |
 | `live-analysis.json` | Real uncached Basecamp analysis on the deployed service, with actual model/usage, source quotes and all five sections | A universal accuracy or latency benchmark |
 | `live-report.png` | Actual UI rendering of the real Basecamp report | A second independent model evaluation |
 | `local-unconfigured-response.json` | Real local Uvicorn request without credentials returns 503, not fabricated success | Successful LLM integration |

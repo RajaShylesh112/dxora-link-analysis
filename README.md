@@ -35,6 +35,8 @@ On **18 November 2026**, the deployed API analyzed `https://basecamp.com/` with 
 
 [Full real API response](docs/evidence/live-analysis.json) · [Recorded report in the app](app/static/recorded-report.json) · [Public deployment checks](docs/evidence/deployment-check.json). This is one measured smoke test, **not** a statistically valid accuracy or latency benchmark. Earlier free-provider timeouts, rate limits and quote-validation failures are documented in [live trial errors](docs/evidence/live-trial-errors.json).
 
+A second real uncached check analyzed **Glinto** (`https://glinto.co.kr/en`) in **21.03 seconds**, using **5,334 input / 2,139 output tokens**, with **$0.00 reported cost**. All five sections, the five required search platforms and source quotations validated successfully. [Full Glinto response](docs/evidence/live-glinto-analysis.json). The final generation schema explicitly requires one query for each platform; the application assigns platform labels deterministically.
+
 ## Run locally
 
 Python **3.11–3.13** supported; Python 3.12 recommended.
