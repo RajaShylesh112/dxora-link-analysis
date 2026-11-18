@@ -7,7 +7,7 @@ from pydantic import ValidationError
 from app.config import Settings
 from app.errors import AnalysisError
 from app.schemas import ModelOutput
-from app.services.llm_service import LLMService, validate_evidence
+from app.services.llm_service import LLMService, grounded_schema, validate_evidence
 from tests.conftest import model_response
 
 
@@ -19,6 +19,9 @@ async def test_request_uses_free_model_schema_and_separates_untrusted_content(se
         assert payload["model"] == "openrouter/free"
         assert payload["reasoning"] == {"enabled": False}
         assert payload["response_format"]["type"] == "json_schema"
+        evidence_schema = payload["response_format"]["json_schema"]["schema"]["$defs"]["Evidence"]
+        assert all(quote in source.text for quote in evidence_schema["properties"]["quote"]["enum"])
+        assert evidence_schema["properties"]["source_id"]["enum"] == ["S1"]
         assert payload["provider"]["max_price"] == {"prompt": 0, "completion": 0}
         assert payload["provider"]["require_parameters"] is True
         assert "UNTRUSTED DATA" in payload["messages"][0]["content"]
@@ -57,6 +60,8 @@ async def test_upstream_errors_are_safe(settings, source, status, code):
     [
         {},
         {"choices": []},
+        {"choices": [[]]},
+        {"choices": [None]},
         {"choices": [{"message": {"content": "not json"}}]},
         {"choices": [{"finish_reason": "length", "message": {"content": "{}"}}]},
         {"error": {"message": "secret"}},
@@ -84,6 +89,19 @@ def test_unknown_source_is_rejected(source, model_output):
     output.brand.evidence[0].source_id = "S5"
     with pytest.raises(AnalysisError):
         validate_evidence(output, [source])
+
+
+def test_grounded_schema_is_bounded_and_supports_multiple_sources(source):
+    second = source.model_copy(
+        update={"id": "S2", "text": "A different public business source with enough context."}
+    )
+    schema = grounded_schema([source, second])
+    evidence = schema["$defs"]["Evidence"]["properties"]
+    assert evidence["source_id"]["enum"] == ["S1", "S2"]
+    quotes = evidence["quote"]["enum"]
+    assert quotes and sum(map(len, quotes)) <= 14000
+    assert all(quote in source.text or quote in second.text for quote in quotes)
+    assert second.text in quotes
 
 
 @pytest.mark.parametrize(

@@ -42,3 +42,7 @@ docker run --rm --env-file .env -p 4000:4000 linklens
 `.dockerignore` excludes local secrets, Git history and virtual environments. The image runs as a non-root user. Render also supports the Docker runtime with the same environment variables and Free instance type; use its auto-detected Dockerfile and no custom start command.
 
 Official documentation checked 18 November 2026: [Free services](https://render.com/docs/free), [FastAPI deployment](https://render.com/docs/deploy-fastapi).
+
+## Updating the current public-repository deployment
+
+When Render uses a public Git repository URL without a connected Git provider, pushes do not automatically deploy even if auto-deploy appears enabled. Use **Manual Deploy → Deploy latest commit** after a source change, and verify the deployed commit. If you connect the repository through Render's GitHub integration later, automatic deploys can be enabled normally. See [Render deployment documentation](https://render.com/docs/deploys).

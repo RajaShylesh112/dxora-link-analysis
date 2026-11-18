@@ -24,7 +24,11 @@
         "tools",
         "top_k",
         "top_p"
-      ]
+      ],
+      "reasoning": {
+        "mandatory": false,
+        "default_enabled": true
+      }
     },
     {
       "id": "baidu/ernie-5.5-flash-preview:free",
@@ -44,7 +48,15 @@
         "tool_choice",
         "tools",
         "top_p"
-      ]
+      ],
+      "reasoning": {
+        "mandatory": true,
+        "default_enabled": true,
+        "supported_efforts": [
+          "high"
+        ],
+        "default_effort": "high"
+      }
     },
     {
       "id": "liquid/lfm-3-1.7b:free",
@@ -73,7 +85,10 @@
         "top_k",
         "top_logprobs",
         "top_p"
-      ]
+      ],
+      "reasoning": {
+        "mandatory": true
+      }
     },
     {
       "id": "particle-ai/particle-1:free",
@@ -102,7 +117,21 @@
         "top_k",
         "top_logprobs",
         "top_p"
-      ]
+      ],
+      "reasoning": {
+        "mandatory": false,
+        "default_enabled": true,
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low",
+          "minimal",
+          "none"
+        ],
+        "default_effort": "high"
+      }
     },
     {
       "id": "nvidia/nemotron-3.5-super-vl:free",
@@ -122,7 +151,10 @@
         "tool_choice",
         "tools",
         "top_p"
-      ]
+      ],
+      "reasoning": {
+        "mandatory": false
+      }
     },
     {
       "id": "dots-studio/dots-3-note-preview:free",
@@ -141,7 +173,10 @@
         "tool_choice",
         "tools",
         "top_p"
-      ]
+      ],
+      "reasoning": {
+        "mandatory": false
+      }
     },
     {
       "id": "openrouter/free",

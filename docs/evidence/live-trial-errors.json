@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-18",
+  "attempts": [
+    {
+      "website": "https://basecamp.com",
+      "model_requested": "openrouter/free",
+      "configured_llm_timeout_seconds": 60,
+      "http_status": 504,
+      "error_code": "llm_timeout",
+      "request_id": "b90ebf87eb7741c39c714af31240d0d3",
+      "model_used": null,
+      "notes": "Live deployed call reached the LLM stage but did not receive a model response before timeout. No completed-response accuracy or token usage was measured."
+    },
+    {
+      "website": "https://basecamp.com",
+      "model_requested": "inclusionai/ling-3.2-flash:free",
+      "configured_llm_timeout_seconds": 100,
+      "http_status": 503,
+      "error_code": "llm_rate_limited",
+      "request_id": "c07b30b0a2b6419b83245b0e5ca4f041",
+      "model_used": null,
+      "notes": "Provider rate-limited the request. No fabricated analysis was returned."
+    },
+    {
+      "website": "https://basecamp.com",
+      "model_requested": "inclusionai/ling-3.2-flash:free",
+      "fallback_model": "nvidia/nemotron-3.5-super-vl:free",
+      "http_status": 502,
+      "error_code": "invalid_model_output",
+      "request_id": "cdd6d5574f72426f86cdd1a59738d7d9",
+      "notes": "A completed structured response contained a quote that did not literally match extracted content. Validation rejected it. Generation was subsequently constrained to an enum of real excerpts."
+    }
+  ]
+}
